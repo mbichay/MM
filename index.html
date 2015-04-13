@@ -119,7 +119,7 @@
         initialize();
         populateMap();
       });
-	var menu_function = function() {
+	var main = function() {
 	  /* Push the body and the nav over by 285px over */
 	  $('.icon-menu').click(function() {
 		$('.menu').animate({
@@ -144,16 +144,19 @@
 	};
 
 
-	$(document).ready(menu_function);
+	$(document).ready(main);
    </script>
   </head>
   <body>
-	<div class : "webpagehead">
-		<p class='icon-menu'>SOFT SKILLS</p>
-	</div>
-	<div class="menu">
+  	<div class="menu">
 		<p class='icon-close'> HUEHUEHUE </p>
 	</div>
-    <div id="map-canvas"></div>
+	<div>
+		<div class : "webpagehead">
+			<p class='icon-menu'>SOFT SKILLS</p>
+		</div>
+
+		<div id="map-canvas"></div>
+	</div>
   </body>
 </html>
