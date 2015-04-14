@@ -21,7 +21,32 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="//www.parsecdn.com/js/parse-1.4.0.min.js"></script>
     <script type=text/javascript src="JS/Markers.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+	var main = function() {
+	  /* Push the body and the nav over by 285px over */
+	  $('.icon-menu').click(function() {
+		$('.menu').animate({
+		  left: "0px"
+		}, 200);
 
+		$('#map-canvas').animate({
+		  left: "285px"
+		}, 200);
+	  });
+
+	  /* Then push them back */
+	  $('.icon-close').click(function() {
+		$('.menu').animate({
+		  left: "-285px"
+		}, 200);
+
+		$('#map-canvas').animate({
+		  left: "0px"
+		}, 200);
+	  });
+	};
+	</script>
   </head>
   <body>
 
