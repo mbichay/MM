@@ -2,18 +2,7 @@
 <html>
 	<head>
 
-		<style type="text/css">
-		  html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-
-	.menu{
-		  height:100%;
-		  position:fixed;
-		  left:-285px;
-		  width:285px;
-		  }
-		
-		</style>
-
+		<link type="text/css" rel="stylesheet" href="CSS/stylesheet.css"/>
 		<script type="text/javascript"
 		  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDRSVWu9oi1FM3-0eFO65UcHahQGPqoC4">
 		</script>
@@ -24,61 +13,65 @@
 		<script type=text/javascript>
 			var main = function() {
 			  /* Push the body and the nav over by 285px over */
-			  $('.icon-menu').click(function() {
-				$('#main_menu').animate({
+			  $('#icon_main_menu').click(function() {
+				$('#mainmenu').animate({
 				  left: "0px"
 				}, 200);
-
+				$('#icon_main_menu').animate({
+				  left: "285px"
+				}, 200);
 				$('#map-canvas').animate({
 				  left: "285px"
 				}, 200);
 			  });
 
 			  /* Then push them back */
-			  $('.icon-close').click(function() {
-				$('#main_menu').animate({
+			  $('#iconclose').click(function() {
+				$('#mainmenu').animate({
 				  left: "-285px"
 				}, 200);
-
+				$('#icon_main_menu').animate({
+				  left: "0px"
+				}, 200);
 				$('#map-canvas').animate({
 				  left: "0px"
 				}, 200);
 			  });
 			
 			  /* Push the body and the nav over by 285px over */
-			  $('.mainmenu_dropapin').click(function() {
-				$('#submit_menu').animate({
+			  $('#mainmenudropapin').click(function() {
+				$('#submitmenu').animate({
 				  left: "0px"
 				}, 200);
-				$('#main_menu').animate({
+				$('#mainmenu').animate({
 				  left: "-285px"
 				}, 200);
 			});
 
 			  /* Then push them back */
-			  $('.submit-close').click(function() {
-				$('#submit_menu').animate({
+			  $('#submitclose').click(function() {
+				$('#submitmenu').animate({
 				  left: "-285px"
 				}, 200);
-				$('#main_menu').animate({
+				$('#mainmenu').animate({
 				  left: "0px"
 				}, 200);
 			});
-			  $('.mainmenu_about').click(function() {
-				$('#about_menu').animate({
+			  $('#mainmenuabout').click(function() {
+				$('#aboutmenu').animate({
 				  left: "0px"
 				}, 200);
-				$('#main_menu').animate({
+				$('#mainmenu').animate({
 				  left: "-285px"
 				}, 200);
 			});
 
 			  /* Then push them back */
-			  $('.about-close').click(function() {
-				$('#about_menu').animate({
+			  $('#aboutclose').click(function() {
+				$('#aboutmenu').animate({
 				  left: "-285px"
 				}, 200);
-				$('#main_menu').animate({
+				$('#mainmenu').animate({
 				  left: "0px"
 				}, 200);
 			});
@@ -92,45 +85,53 @@
 	<body>
 
 
-		<div class : "webpagehead">
-			<p class='icon-menu'>SOFT SKILLS</p>
+		<div class = "page_header">
+			<p id="icon_main_menu"><img src="resources/icons/menu-alt-64.png" style={float:left; }/> MENU</p>
+			<p class='maintitle'>SOFT SKILLS</p>
 		</div>
 		
-		<div class ="menu" id="main_menu">
-			<p class="icon BS"> icon</p>
-			<p class='icon-close'> CLOSE </p>
-			<div class ="mainmenu_dropapin"> DROP A PIN </div>
-			<div class="mainmenu_about"> About </div>
-			<div class="mainmenu_blabla"> Blablabla </div>
+		<div class ="menu" id="mainmenu">
+			<div class="menuheader">
+				<img class="iconBS" src="resources/NINJAS/Ninja1.jpg" />
+				<img class="close" id='iconclose' src="resources/icons/18_Close-128.png" /> 
+			</div>
+			<div class ="menucontent" id ="mainmenudropapin"> DROP A PIN </div>
+			<div class ="menucontent" id="mainmenuabout"> About </div>
+			<div class ="menucontent" id="mainmenublabla"> Blablabla </div>
 		</div>
 		
-		<div class ="menu" id="submit_menu">
-			<p class='submit-close'> CLOSE </p>
+		<div class ="menu" id="submitmenu">
+			<div class="menuheader">
+				<img class="iconBS" src="resources/NINJAS/Ninja1.jpg" />
+				<img class="close" id='submitclose' src="resources/icons/18_Close-128.png" />
+			</div>
 			<form>
-				<div class="form-group">
-					<label for="InputName">Name :</label>
-					<input type="text" class="form-control" id="InputName" placeholder="">
-				</div>
-				<div class="form-group">
-					<label for="InputPost">Text :</label>
-					<input type="text" class="form-control" id="InputPost" placeholder="">
-				</div>
-				<div class="form-group">
-					<label for="exampleInputFile">Choose an Image:</label>
-					<input type="file" id="exampleInputFile">
+				<div style={margin=10px; padding= 10px;}
+					<div class="form-group">
+						<label for="InputName">Name :</label>
+						<input type="text" class="form-control" id="InputName" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="InputPost">Text :</label>
+						<input type="text" class="form-control" id="InputPost" placeholder="">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputFile">Choose an Image:</label>
+						<input type="file" id="exampleInputFile">
 
+					</div>
+				<button type="submit" class="btn btn-default">Submit</button
 				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
 			</form>
 		</div>
 		
-		
-		<div class ="menu" id="about_menu">
-			<p class="icon BS"> icon</p>
-			<p class='about-close'> CLOSE </p>
+		<div class ="menu" id="aboutmenu">
+			<div class="menuheader">
+				<img class="iconBS" src="resources/NINJAS/Ninja1.jpg" />
+				<img class="close" id='aboutclose' src="resources/icons/18_Close-128.png" /> 
 
+			</div>
 		</div>
-		
 		
 		<div id="map-canvas"></div>
 

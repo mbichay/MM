@@ -1,0 +1,66 @@
+	html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+
+	
+	.menu{
+		  height:100%;
+		  position:fixed;
+		  top:0px;
+		  left:-285px;
+		  width:285px;
+		  }
+		  
+	.page_header{
+	height:70px;
+	}
+	
+	
+	#icon_main_menu{
+		position:fixed;
+		left:0px;
+		max-height:30px;
+		float:left;
+	}
+	
+
+
+	.maintitle{
+		position:relative;
+		top:10px;
+		left:50%;
+		font-size:30px;
+	
+	}
+	
+	.menuheader{
+		height:70px;
+		border-color:black;
+		border-width:medium;
+		border-style:solid;
+	
+	
+	}
+	
+	
+	.iconBS{
+	
+	background-repeat:cover;
+	max-height:100%;
+	float:left;
+	}
+	
+	/*.menucontent{
+	position:relative;
+	top:10%;
+	margin-right:10px;
+	text-align:right;
+	font-size:20px;
+		border-color:#70B0F9;
+		border-width:medium;
+		border-style:solid;
+	
+	}*/
+	.close{
+		max-height:100%;
+	
+	}
+		
