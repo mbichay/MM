@@ -1,3 +1,6 @@
+
+
+
 Parse.initialize("wFFZue6UImviqCkCtBlLazQ51N39l3TUy04u2i8l", "hyPckU5KOyjTh2AZPdKs1zUYSYlAkbcHC3XC0gOz");
 //map settings/initializers changed here
 var map; // global map variable
@@ -94,3 +97,6 @@ google.maps.event.addDomListener(window, 'load', function() {
   initialize();
   populateMap();
 });
+
+
+
