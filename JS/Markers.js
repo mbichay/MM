@@ -92,11 +92,23 @@ function populateMap() {
 }
 
 
+function pullFromMenu() {
+        console.log(document.getElementById("InputName").value);
+
+}
+
+
+
+
 google.maps.event.addDomListener(window, 'load', function() {
   //on-load function calls
   initialize();
   populateMap();
 });
+
+
+
+
 
 var main = function() {
 	  /* Push the body and the nav over by 285px over */
@@ -122,4 +134,3 @@ var main = function() {
 	  });
 	};
 $(document).ready(main);
-
