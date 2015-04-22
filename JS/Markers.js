@@ -23,8 +23,7 @@ function Marker (latitude, longitude, name, message, url) {
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
 
         // This is marker info window content, HTML encoded.
-          var infoContent = '</div>'+
-                  '<h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
+          var infoContent = <h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
                   '<div id="bodyContent">'+'<p>'+this.message+'</p>'+'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+'</div>'+
                   '</div>';
           var infowindow = new google.maps.InfoWindow({content: infoContent}); // instance of info window
