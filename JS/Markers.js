@@ -23,18 +23,20 @@ function Marker (latitude, longitude, name, message, url,score) {
 		this.scorechanged=0;
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
 		
+		
+		var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         // This is marker info window content, HTML encoded.
           var infoContent = '<h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
                   '<div id="bodyContent">'+'<p>'+this.message+'</p>'+'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+'</div>'+
                   '<p> score : ' + this.score + '</p>' +
-				  '<button type="button" class="btn btn-default" onclick="changescore(1)">Upvote</button>' +
-				  '<button type="button" class="btn btn-default" onclick="changescore(-1)">Downvote</button>' + '</div>';
+				  '<button type="button" class="btn btn-default" onclick="self.changescore(1)">Upvote</button>' +
+				  '<button type="button" class="btn btn-default" onclick="self.changescore(-1)">Downvote</button>' + '</div>';
           var infowindow = new google.maps.InfoWindow({content: infoContent}); // instance of info window
           return infowindow;
         };
 		
         this.window = this.makeInfoWindow();
-        var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
+       
         google.maps.event.addListener(this.marker, 'click', function(){
           self.window.open(map, self.marker);
           map.panTo(self.coords);
