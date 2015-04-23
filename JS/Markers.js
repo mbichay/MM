@@ -7,29 +7,32 @@ var markers = new Array(); // global marker array
 
 // this function will be called on startup, this is where map options are modified
 function initialize() {
-  var mapOptions = {zoom: 2, center: new google.maps.LatLng(0,0), minZoom:2};
+  var mapOptions = {zoom: 3, center: new google.maps.LatLng(0,0), minZoom:3};
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
 
 
 // marker class for the map
-function Marker (latitude, longitude, name, message, url) {
+function Marker (latitude, longitude, name, message, url,score) {
         this.name = name;
         this.message = message;
         this.coords = new google.maps.LatLng(latitude, longitude);
         this.marker = new google.maps.Marker({position: this.coords, map: map, title: this.name+"'s diary."}); //creates an instance of marker
         this.url = url;
-
+		this.score=score;
+		this.scorechanged=0;
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
-
+		
         // This is marker info window content, HTML encoded.
-          var infoContent = <h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
+          var infoContent = '<h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
                   '<div id="bodyContent">'+'<p>'+this.message+'</p>'+'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+'</div>'+
-                  '</div>';
+                  '<p> score : ' + this.score + '</p>' +
+				  '<button type="button" class="btn btn-default" onclick="changescore(1)">Upvote</button>' +
+				  '<button type="button" class="btn btn-default" onclick="changescore(-1)">Downvote</button>' + '</div>';
           var infowindow = new google.maps.InfoWindow({content: infoContent}); // instance of info window
           return infowindow;
         };
-
+		
         this.window = this.makeInfoWindow();
         var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         google.maps.event.addListener(this.marker, 'click', function(){
@@ -40,7 +43,17 @@ function Marker (latitude, longitude, name, message, url) {
           }
           openPin = self;
         });
+		
+		function changescore(num) {
+			if (this.scorechanged===0)
+			{
+			this.scorechanged=1;
+			this.score += num;
+			console.log(this.score);
+			}
+		}
 }
+
 
 
 //function for making markers
@@ -79,7 +92,7 @@ function populateMap() {
       console.log("Successfully retrieved " + results.length + " pins.");
       for (var i = 0; i < results.length; i++) {
         var pin = results[i];
-        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url")));
+        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score")));
       }
     },
     error: function(error) {
