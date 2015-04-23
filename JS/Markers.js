@@ -13,7 +13,7 @@ function initialize() {
 
 
 // marker class for the map
-function Marker (latitude, longitude, name, message, url,score) {
+function Marker (latitude, longitude, name, message, url,score,i) {
         this.name = name;
         this.message = message;
         this.coords = new google.maps.LatLng(latitude, longitude);
@@ -21,20 +21,24 @@ function Marker (latitude, longitude, name, message, url,score) {
         this.url = url;
 		this.score=score;
 		this.scorechanged=0;
+		this.index=i;
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
-		
-		
-		var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         // This is marker info window content, HTML encoded.
           var infoContent = '<h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
                   '<div id="bodyContent">'+'<p>'+this.message+'</p>'+'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+'</div>'+
                   '<p> score : ' + this.score + '</p>' +
-				  '<button type="button" class="btn btn-default" onclick="self.changescore(1)">Upvote</button>' +
-				  '<button type="button" class="btn btn-default" onclick="self.changescore(-1)">Downvote</button>' + '</div>';
+				  '<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(1)">Upvote</button>' +
+				  '<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(-1)">Downvote</button>' + '</div>';
           var infowindow = new google.maps.InfoWindow({content: infoContent}); // instance of info window
           return infowindow;
         };
-		
+		this.changescore = function(num) {
+			if (this.scorechanged===0){
+			this.scorechanged=1;
+			this.score += num;
+			console.log(this.score);}
+		}
+		var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         this.window = this.makeInfoWindow();
        
         google.maps.event.addListener(this.marker, 'click', function(){
@@ -46,14 +50,6 @@ function Marker (latitude, longitude, name, message, url,score) {
           openPin = self;
         });
 		
-		function changescore(num) {
-			if (this.scorechanged===0)
-			{
-			this.scorechanged=1;
-			this.score += num;
-			console.log(this.score);
-			}
-		}
 }
 
 
@@ -94,7 +90,7 @@ function populateMap() {
       console.log("Successfully retrieved " + results.length + " pins.");
       for (var i = 0; i < results.length; i++) {
         var pin = results[i];
-        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score")));
+        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score"),i));
       }
     },
     error: function(error) {

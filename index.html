@@ -93,6 +93,20 @@
 				  left: "0px"
 				}, 200);
 			});
+			  $('#submitbutton').click(function() {
+				$('#submitmenu').animate({
+				  left: "-285px"
+				}, 200);
+				$('#mainmenu').animate({
+				  left: "-285px"
+				}, 200);
+				$('#icon_main_menu').animate({
+				  left: "0px"
+				}, 200);
+				$('#map-canvas').animate({
+				  left: "0px"
+				}, 200);
+			});
 			};
 			$(document).ready(main);
 		</script>
@@ -138,7 +152,7 @@
 						<input type="file" id="InputFile">
 
 					</div>
-				<button type="button" class="btn btn-default" onclick="getMenuItems()">Submit</button>
+				<button type="button" class="btn btn-default" id="submitbutton" onclick="getMenuItems()">Submit</button>
 				</div>
 			</form>
 		</div>
