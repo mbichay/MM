@@ -90,17 +90,22 @@ function populateMap() {
   var Pins = Parse.Object.extend("Pins");
   var query = new Parse.Query(Pins);
   query.find({
-    success: function(results) {
-      console.log("Successfully retrieved " + results.length + " pins.");
-      for (var i = 0; i < results.length; i++) {
-        var pin = results[i];
-        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score")));
-      }
-    },
-    error: function(error) {
-      alert("Error: " + error.code + " " + error.message);
-    }
-  });
+     success: function(results) {
+       for (var i = 0; i < results.length; i++) {
+               var pin = results[i];
+               if (pin.get("score") < -20){
+                 pin.destroy();
+                 console.log("testyyy");
+                 } else {
+                         markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score")));
+                 }
+         }
+         console.log("Successfully retrieved " + markers.size() + " pins.");
+     },
+     error: function(error) {
+       alert("Error: " + error.code + " " + error.message);
+     }
+   });
   console.log("Succesfully populated map.")
 }
 
