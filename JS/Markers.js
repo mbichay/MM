@@ -22,8 +22,8 @@ function Marker (latitude, longitude, name, message, url,score) {
 		this.score=score;
 		this.scorechanged=0;
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
-		
-		
+
+
 		var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         // This is marker info window content, HTML encoded.
           var infoContent = '<h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
@@ -34,9 +34,9 @@ function Marker (latitude, longitude, name, message, url,score) {
           var infowindow = new google.maps.InfoWindow({content: infoContent}); // instance of info window
           return infowindow;
         };
-		
+
         this.window = this.makeInfoWindow();
-       
+
         google.maps.event.addListener(this.marker, 'click', function(){
           self.window.open(map, self.marker);
           map.panTo(self.coords);
@@ -45,7 +45,7 @@ function Marker (latitude, longitude, name, message, url,score) {
           }
           openPin = self;
         });
-		
+
 		function changescore(num) {
 			if (this.scorechanged===0)
 			{
