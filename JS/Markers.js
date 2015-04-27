@@ -24,11 +24,12 @@ function Marker (latitude, longitude, name, message, url,score,i) {
 		this.index=i;
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
         // This is marker info window content, HTML encoded.
-          var infoContent = '<h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
+          var infoContent = '<div class="pincss"> '+'<div class="pinleftcontent"style="float:left;"> ' + '<h1 id=firstHeading" class="firstHeading">'+this.name+'</h1>'+
                   '<div id="bodyContent">'+'<p>'+this.message+'</p>'+'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+'</div>'+
                   '<p> score : ' + this.score + '</p>' +
 				  '<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(1)">Upvote</button>' +
-				  '<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(-1)">Downvote</button>' + '</div>';
+				  '<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(-1)">Downvote</button>' + '</div></div>'+
+				  '<div class="pinrightcontent"> '+'</div></div>';
           var infowindow = new google.maps.InfoWindow({content: infoContent}); // instance of info window
           return infowindow;
         };
@@ -36,7 +37,8 @@ function Marker (latitude, longitude, name, message, url,score,i) {
 			if (this.scorechanged===0){
 			this.scorechanged=1;
 			this.score += num;
-			console.log(this.score);}
+			
+			}
 		}
 		var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         this.window = this.makeInfoWindow();
