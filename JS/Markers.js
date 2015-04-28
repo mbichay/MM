@@ -13,7 +13,7 @@ function initialize() {
 
 
 // marker class for the map
-function Marker (latitude, longitude, name, message, url, score, id) {
+function Marker (latitude, longitude, name, message, url, score, id,i) {
         this.name = name;
         this.message = message;
         this.coords = new google.maps.LatLng(latitude, longitude);
@@ -21,6 +21,7 @@ function Marker (latitude, longitude, name, message, url, score, id) {
         this.url = url;
 	this.score=score;
 	this.scorechanged=0;
+	this.index=i;
         this.id = id;
         var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
@@ -45,7 +46,7 @@ function Marker (latitude, longitude, name, message, url, score, id) {
           openPin = self;
         });
 
-		function changescore(num) {
+		this.changescore = function(num) {
 			if (this.scorechanged===0)
 			{
 			this.scorechanged=1;
@@ -104,7 +105,7 @@ function populateMap() {
                if (pin.get("score") < -20){
                  pin.destroy();
                 } else{
-                        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score"), pin.get("objectId")));
+                        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score"), pin.get("objectId"),i));
                 }
          }
          console.log("Successfully retrieved " + markers.length + " pins.");
