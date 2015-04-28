@@ -13,30 +13,28 @@ function initialize() {
 
 
 // marker class for the map
-function Marker (latitude, longitude, name, message, url,score) {
+function Marker (latitude, longitude, name, message, url, score, id) {
         this.name = name;
         this.message = message;
         this.coords = new google.maps.LatLng(latitude, longitude);
         this.marker = new google.maps.Marker({position: this.coords, map: map, title: this.name+"'s diary."}); //creates an instance of marker
         this.url = url;
-		this.score=score;
-		this.scorechanged=0;
+	this.score=score;
+	this.scorechanged=0;
+        this.id = id;
+        var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
-
-
-		var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         // This is marker info window content, HTML encoded.
           var infoContent = '<h1 id="firstHeading" class="firstHeading">'+this.name+'</h1>'+
                   '<div id="bodyContent">'+'<p>'+this.message+'</p>'+'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+'</div>'+
                   '<p> score : ' + this.score + '</p>' +
-				  '<button type="button" class="btn btn-default" onclick="self.changescore(1)">Upvote</button>' +
-				  '<button type="button" class="btn btn-default" onclick="self.changescore(-1)">Downvote</button>' + '</div>';
+				  '<button type="button" class="btn btn-default" onclick="this.changescore(1)">Upvote</button>' +
+				  '<button type="button" class="btn btn-default" onclick="this.changescore(-1)">Downvote</button>' + '</div>';
           var infowindow = new google.maps.InfoWindow({content: infoContent}); // instance of info window
           return infowindow;
         };
 
         this.window = this.makeInfoWindow();
-
         google.maps.event.addListener(this.marker, 'click', function(){
           self.window.open(map, self.marker);
           map.panTo(self.coords);
@@ -51,9 +49,17 @@ function Marker (latitude, longitude, name, message, url,score) {
 			{
 			this.scorechanged=1;
 			this.score += num;
+                        var Pins = Parse.Object.extend("Pins");
+                        var query = new Parse.Query(Pins);
+                        query.get(this.id, {
+                                success: function(gameScore) {
+                                        Pins.increment("score", num)
+                                }
+                        });
 			console.log(this.score);
 			}
 		}
+
 }
 
 
@@ -74,6 +80,7 @@ function pinToDatabase(latitude, longitude, name, message, url) {
   push.set("name", name);
   push.set("message", message);
   push.set("url", url);
+  push.set("score", 0);
   push.save(null, {
     success: function() {
       console.log("Database push succesful.");
@@ -91,22 +98,20 @@ function populateMap() {
   var query = new Parse.Query(Pins);
   query.find({
      success: function(results) {
-       for (var i = 0; i < results.length; i++) {
+        for (var i = 0; i < results.length; i++) {
                var pin = results[i];
                if (pin.get("score") < -20){
                  pin.destroy();
-                 console.log("testyyy");
-                 } else {
-                         markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score")));
-                 }
+                } else{
+                        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score"), pin.get("objectId")));
+                }
          }
-         console.log("Successfully retrieved " + markers.size() + " pins.");
+         console.log("Successfully retrieved " + markers.length + " pins.");
      },
      error: function(error) {
        alert("Error: " + error.code + " " + error.message);
      }
    });
-  console.log("Succesfully populated map.")
 }
 
 
@@ -121,6 +126,10 @@ function getMenuItems() {
                 var long = position.coords.longitude;
                 var clientId = "30c38c5ab23bdb5";
 
+                if (document.getElementById("InputPost").value === "")
+                {
+                        alert("Please enter a post!");
+                }else {
                 if (document.getElementById('InputFile').value) {
                 var reader = new FileReader();
                 imgFile = reader.readAsDataURL(document.getElementById('InputFile').files[0]);
@@ -144,6 +153,9 @@ function getMenuItems() {
                                         if (data.success === true) {
                                                 var url = data.data.link;
                                                 var name = document.getElementById("InputName").value;
+                                                if (name === ""){
+                                                        name = "Anonymous";
+                                                }
                                                 var message = document.getElementById("InputPost").value;
                                                 pinToDatabase(lat, long, name, message, url);
                                         } else {
@@ -153,12 +165,15 @@ function getMenuItems() {
                         };
 
                 } else {
-                        console.log("test");
                         var name = document.getElementById("InputName").value;
+                        if (name === ""){
+                                name = "Anonymous";
+                        }
                         var message = document.getElementById("InputPost").value;
                         pinToDatabase(lat, long, name, message, "");
                 }
         }
+}
 
         function errorFunction(position)
         {
