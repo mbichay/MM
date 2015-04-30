@@ -26,12 +26,23 @@ function Marker (latitude, longitude, name, message, url, score, id,i) {
         var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
         // This is marker info window content, HTML encoded.
-        var infoContent = '<div class="pincss"> '+'<div class="pinleftcontent"style="float:left;"> ' + '<h1 id=firstHeading" class="firstHeading">'+this.name+'</h1>'+
-                  '<div id="bodyContent">'+'<p>'+this.message+'</p>'+'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+'</div>'+
-                  '<p> score : ' + this.score + '</p>' +
-				  '<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(1)">Upvote</button>' +
-				  '<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(-1)">Downvote</button>' + '</div></div>'+
-				  '<div class="pinrightcontent"> '+'</div></div>';
+        var infoContent =  '<div class="pincss"> '+
+								'<div class="pinleftcontent"> ' + 
+									'<h1 id=firstHeading" class="firstHeading">'+this.name+'</h1>'+
+									'<div id="bodyContent">'+
+										'<p>'+this.message+'</p>'+
+										'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+
+									'</div>'+
+									'<div class="pinscore">' +
+										'<p> score : ' + this.score + '</p>' +
+										'<div>' +
+											'<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(1)">Upvote</button>' +
+											'<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(-1)">Downvote</button>' +
+										'</div>'+										
+									'</div>'+
+								'</div>'+
+							'</div>';
+
           var infowindow = new google.maps.InfoWindow({content: infoContent}); // instance of info window
           return infowindow;
         };
@@ -51,15 +62,17 @@ function Marker (latitude, longitude, name, message, url, score, id,i) {
 			{
 			this.scorechanged=1;
 			this.score += num;
-                        var Pins = Parse.Object.extend("Pins");
-                        var query = new Parse.Query(Pins);
-                        query.get(this.id, {
-                                success: function(gameScore) {
-                                        Pins.increment("score", num)
-                                }
-                        });
-			console.log(this.score);
-			}
+			var number =this.score;
+            var Pins = Parse.Object.extend("Pins");
+            var query = new Parse.Query(Pins);
+			query.equalTo("objectId",this.id)
+            query.first({
+                success: function(object) {
+                    object.set("score",number);
+					object.save();
+                }
+            });
+		}
 		}
 
 }
@@ -105,7 +118,7 @@ function populateMap() {
                if (pin.get("score") < -20){
                  pin.destroy();
                 } else{
-                        markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score"), pin.get("objectId"),i));
+                    markers.push(new Marker(pin.get("latitude"), pin.get("longitude"), pin.get("name"), pin.get("message"), pin.get("url"),pin.get("score"),pin.id,i));
                 }
          }
          console.log("Successfully retrieved " + markers.length + " pins.");
