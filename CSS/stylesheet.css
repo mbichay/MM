@@ -1,0 +1,193 @@
+	html, body, #map-canvas { height: 100%;width=100%; margin: 0; padding: 0;}
+	
+	html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+	background-color: #32ACED;
+	
+}
+	
+	
+	.menu{
+		height:100%;
+		position:fixed;
+		top:0px;
+		left:-285px;
+		width:285px;
+		background-color: #32ACED;
+		color:white;
+		border-right-color:#EB5D1E;
+		border-right-width:large;
+		border-right-style:solid;
+		  }
+		  
+	.page_header{
+	height:70px;
+	background-color: #32ACED;
+	color:white;
+	}
+
+	#icon_main_menu{
+		position:fixed;
+		left:0px;
+		max-height:30px;
+		float:left;
+	}
+	
+
+
+	.maintitle{
+		position:relative;
+		top:10px;
+		left:50%;
+		font-size:30px;
+	
+	}
+	
+	.menuheader{
+		height:70px;
+		border-color:#EB5D1E;
+		border-width:medium;
+		border-style:solid;
+	
+	
+	}
+	
+	
+	.iconBS{
+	
+	background-repeat:cover;
+	max-height:100%;
+	float:left;
+	}
+	
+	.menucontent{
+	position:relative;
+	top:20px;
+	margin:10px;
+	padding:20px;
+	text-align:right;
+	font-size:20px;
+	font-family:helvetica;
+		border-color:#EB5D1E;
+		border-width:medium;
+		border-style:solid;
+	
+	}
+	.close{
+		max-height:100%;
+	
+	}
+	.aboutcontent{
+	position:relative;
+	top:50px;
+	margin:20px;
+	padding:20px;
+	border-color:#70B0F9;
+	border-width:medium;
+	border-style:solid;
+	}
+	.blablabla{
+	
+	position:relative;
+	top:100px;
+	font-weight:bold;
+	font-size:40px;
+	transform: rotate(-45deg);
+	
+	}
+	
+	.drop_a_pin_form{
+	position:relative;
+	top:50px;
+	margin:5px;
+	padding:5px;
+	border-color:#70B0F9;
+	border-width:medium;
+	border-style:solid;
+	}
+	
+	#InputFile{
+	overflow:hidden;
+	max-width:100%;
+	}
+	#InputPost{
+	
+	}
+
+	.pincss{
+	border-color:black;
+	border-width:medium;
+	border-style:solid;
+	border-radius: 20px 20px 20px 20px;
+	margin:10px;
+	padding:10px;
+	}
+	.firstHeading{
+	border-top-color:black;
+	border-top-width:medium;
+	border-top-style:solid;
+	border-bottom-color:black;
+	border-bottom-width:medium;
+	border-bottom-style:solid;
+	}
+	 #bodyContent{
+	 padding-bottom:10px;
+	 border-bottom-color:black;
+	border-bottom-width:medium;
+	border-bottom-style:solid;
+	 }
+	 #bodyContent p{
+	 padding-bottom:10px;
+	 border-bottom-color:black;
+	border-bottom-width:medium;
+	border-bottom-style:solid;
+	 }
+	 #bodyContent img{
+	margin-left: auto;
+    margin-right: auto;
+	 }
+	.pinscore{
+	border-color:black;
+	border-width:medium;
+	border-style:solid;
+	border-radius: 20px 20px 20px 20px;
+	margin:10px;
+	padding:10px;
+	overflow:hidden;
+	
+	}
+	.pinscore p{
+	float:left;
+	font-size:15px;
+	}
+	
+	.pinscore button{
+	text-align:right;
+	}
+	.pinscore div{
+	position:relative;
+	left:10%;
+	}
+	
+	
+/*	
+	.pinleftcontent{
+	border-color:blue;
+	border-width:medium;
+	border-style:solid;
+	height:100px;
+	width:100px;
+	}
+	
+	
+	.pinrightcontent{
+	border-color:red;
+	border-width:medium;
+	border-style:solid;
+	height:100px;
+	width:100px;
+	}
+*/
+	
+	
