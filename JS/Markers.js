@@ -197,8 +197,6 @@ function getMenuItems() {
 
 }
 
-
-
 google.maps.event.addDomListener(window, 'load', function() {
   //on-load function calls
   initialize();
