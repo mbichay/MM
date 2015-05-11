@@ -1,16 +1,16 @@
 	html, body, #map-canvas { height: 100%;width=100%; margin: 0; padding: 0;}
-	
+
 	html, body {
     max-width: 100%;
     overflow-x: hidden;
 	overflow:hidden;
 	background-color: #32ACED;
-	
+
 }
-	
-	.copyright{
+
+	#copyright{
 	position:relative;
-	top:55%;
+	top:35%;
 	margin:10px;
 	padding:20px;
 	text-align:right;
@@ -28,7 +28,7 @@
 		border-right-width:large;
 		border-right-style:solid;
 		  }
-		  
+
 	.page_header{
 	height:70px;
 	background-color: #32ACED;
@@ -41,7 +41,7 @@
 		max-height:30px;
 		float:left;
 	}
-	
+
 
 
 	.maintitle{
@@ -49,24 +49,24 @@
 		top:10px;
 		left:43%;
 		font-size:30px;
-	
+
 	}
-	
+
 	.menuheader{
 		height:70px;
 		border-color:#EB5D1E;
 		border-width:medium;
 		border-style:solid;
 		background-color:#EB5D1E;
-	
+
 	}
-	
+
 	.iconBS{
 	float:right;
 	background-repeat:cover;
 	max-height:100%;
 	}
-	
+
 	.menucontent{
 	position:relative;
 	top:20px;
@@ -80,38 +80,45 @@
 		border-style:solid;
 		border-radius: 20px 20px 20px 20px;
 		background-color:#EB5D1E;
-	
+
 	}
 	.iclose{
 		max-height:100%;
 		float:left;
-	
+
 	}
 	.aboutcontent{
 	position:relative;
-	top:50px;
-	margin:20px;
-	padding:20px;
+	top:10px;
+	margin:10px;
+	padding:10px;
 	border-color:#EB5D1E;
 	border-width:medium;
 	border-style:solid;
-	border-radius: 20px 20px 20px 20px;
+	border-radius: 10px 10px 10px 10px;
 	background-color:#EB5D1E;
 	}
 	.blablabla{
-	margin:10px;
-	padding:10px;
+	background-color:#EB5D1E;
+	margin:5px;
+	padding:5px;
 	position:relative;
-	top:100px;
+	top:10px;
 	font-weight:bold;
-	font-size:20px;
 	border-color:#EB5D1E;
 	border-width:medium;
 	border-style:solid;
 	border-radius: 20px 20px 20px 20px;
+	height:40%;
 	
 	}
 	
+	.blablabla img{
+	width:90%;
+	margin:auto;
+	padding:auto;
+	}
+
 	.drop_a_pin_form{
 	position:relative;
 	top:50px;
@@ -123,13 +130,13 @@
 	border-radius: 20px 20px 20px 20px;
 	background-color:#EB5D1E;
 	}
-	
+
 	#InputFile{
 	overflow:hidden;
 	max-width:100%;
 	}
 	#InputPost{
-	
+
 	}
 
 	.pincss{
@@ -174,13 +181,13 @@
 	margin:10px;
 	padding:10px;
 	overflow:hidden;
-	
+
 	}
 	.pinscore p{
 	float:left;
 	font-size:15px;
 	}
-	
+
 	.pinscore button{
 	text-align:right;
 	}
@@ -188,9 +195,13 @@
 	position:relative;
 	left:10%;
 	}
-	
-	
-/*	
+
+	.logoimg{
+		width:49%;
+
+	}
+
+/*
 	.pinleftcontent{
 	border-color:blue;
 	border-width:medium;
@@ -198,8 +209,8 @@
 	height:100px;
 	width:100px;
 	}
-	
-	
+
+
 	.pinrightcontent{
 	border-color:red;
 	border-width:medium;
@@ -208,5 +219,3 @@
 	width:100px;
 	}
 */
-	
-	

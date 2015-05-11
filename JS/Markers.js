@@ -27,18 +27,18 @@ function Marker (latitude, longitude, name, message, url, score, id,i) {
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
         // This is marker info window content, HTML encoded.
         var infoContent =  '<div class="pincss"> '+
-								'<div class="pinleftcontent"> ' + 
+								'<div class="pinleftcontent"> ' +
 									'<h1 id=firstHeading" class="firstHeading">'+this.name+'</h1>'+
 									'<div id="bodyContent">'+
 										'<p>'+this.message+'</p>'+
-										'<img src='+this.url+' style="max-height:400px; max-width: 400px;"/>'+
+										'<img src='+this.url+' style="max-height:300px; max-width: 300px;"/>'+
 									'</div>'+
 									'<div class="pinscore">' +
 										'<p> score : ' + this.score + '</p>' +
 										'<div>' +
 											'<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(1)">Upvote</button>' +
 											'<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(-1)">Downvote</button>' +
-										'</div>'+										
+										'</div>'+
 									'</div>'+
 								'</div>'+
 							'</div>';
