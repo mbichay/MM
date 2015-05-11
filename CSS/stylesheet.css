@@ -82,6 +82,20 @@
 		background-color:#EB5D1E;
 
 	}
+	
+	.logobox{
+	position:relative;
+	top:20px;
+	margin:2px;
+	padding:4px;
+	font-size:20px;
+		border-color:#EB5D1E;
+		border-width:medium;
+		border-style:solid;
+		border-radius: 20px 20px 20px 20px;
+		background-color:#EB5D1E;
+
+	}
 	.iclose{
 		max-height:100%;
 		float:left;
@@ -197,7 +211,10 @@
 	}
 
 	.logoimg{
-		width:49%;
+		width:45%;
+		position:relative;
+		top:10px;
+		left:10px;
 
 	}
 
