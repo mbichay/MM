@@ -23,6 +23,11 @@ function Marker (latitude, longitude, name, message, url, score, id,i) {
 	this.scorechanged=0;
 	this.index=i;
         this.id = id;
+
+        if (this.url === ""){
+                this.url = "http://176.32.230.29/bichay.com/resources/icons/softskillsicon.jpg";
+        }
+
         var self = this; //WOAH SOMEONE EXPLAIN WHY THIS WORKS... BUT ANY OTHER WAY DOESN'T! WTF!!!
         this.makeInfoWindow = function makeInfoWindow() { // function for creating info window
         // This is marker info window content, HTML encoded.
