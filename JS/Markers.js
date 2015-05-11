@@ -34,7 +34,6 @@ function Marker (latitude, longitude, name, message, url, score, id,i) {
 										'<img src='+this.url+' style="max-height:300px; max-width: 300px;"/>'+
 									'</div>'+
 									'<div class="pinscore">' +
-										'<p> score : ' + this.score + '</p>' +
 										'<div>' +
 											'<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(1)">Upvote</button>' +
 											'<button type="button" class="btn btn-default" onclick="markers['+ this.index +'].changescore(-1)">Downvote</button>' +
